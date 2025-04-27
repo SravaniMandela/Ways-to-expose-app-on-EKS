@@ -1,2 +1,2 @@
 # Ways-to-expose-app-on-EKS
-ways to expose our application inside kuberntes
+ways to expose our application inside kubernetes
