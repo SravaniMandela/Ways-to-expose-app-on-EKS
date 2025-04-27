@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: static-app-ingress
+  namespace: app
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/inbound-cidrs: 0.0.0.0/0
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80},{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/security-groups: "<security_group_id>"
+    alb.ingress.kubernetes.io/certificate-arn: "<certificate_arn>"
+    external-dns.alpha.kubernetes.io/hostname: "<host>"
+
+spec:
+  ingressClassName: alb
+  rules:
+  - host: <host>
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: lb-service
+            port:
+              number: 80
