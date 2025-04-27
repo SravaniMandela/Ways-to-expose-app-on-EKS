@@ -1,1 +1,5 @@
-#deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static-app
+  namespace: app
